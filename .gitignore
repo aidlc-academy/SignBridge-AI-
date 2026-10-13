@@ -1,5 +1,25 @@
-.DS_Store
+# Python
 __pycache__/
 *.pyc
+*.pyo
 .venv/
-*.tmp
+.venv311/
+backend/.venv311/
+venv/
+*.egg-info/
+
+# Backend - generated artifacts
+backend/trained_models/*.joblib
+backend/trained_models/evaluation_report.json
+backend/datasets/*.csv
+backend/database/*.db
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# General
+.DS_Store
+Thumbs.db
+*.log
