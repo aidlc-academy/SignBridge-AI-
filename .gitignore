@@ -14,7 +14,8 @@ backend/trained_models/evaluation_report.json
 backend/datasets/*.csv
 backend/database/*.db
 
-# Frontend
+# Node
+node_modules/
 frontend/node_modules/
 frontend/dist/
 frontend/.env.local
