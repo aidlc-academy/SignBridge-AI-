@@ -4,13 +4,9 @@
 
 An AI-powered communication assistant that transforms supported sign-language gestures into text and speech, helping people communicate more easily.
 
-> **Phase 1 — Project Setup and Architecture**
-> Camera integration, gesture recognition, and ML training are implemented in later phases.
-> This phase establishes the full project structure, design system, working frontend routing, and a working backend API.
-
 ---
 
-## Supported Vocabulary (Phase 1)
+## Supported Vocabulary
 
 10 ASL static handshapes:
 
@@ -27,7 +23,7 @@ An AI-powered communication assistant that transforms supported sign-language ge
 | Y | Thumb + pinky extended |
 | 1 | Index finger pointing up |
 
-Motion-dependent signs (J, Z) are excluded from Phase 1. ISL support is planned for a later phase when suitable training data is available.
+Motion-dependent signs (J, Z) are excluded. ISL support is planned for a future release when suitable training data is available.
 
 ---
 
@@ -121,7 +117,7 @@ npx tsc --noEmit
 
 ---
 
-## Training the Gesture Classifier (Phase 5)
+## Training the Gesture Classifier
 
 After collecting labeled landmark samples:
 
@@ -183,21 +179,3 @@ signbridge-ai/
 
 SignBridge AI is not a replacement for qualified sign-language interpreters or emergency services (112 / 911).
 The current model recognizes only 10 ASL static handshapes and should not be relied upon for critical communication.
-
----
-
-## Development Phases
-
-| Phase | Status | Description |
-|---|---|---|
-| 1 | ✅ Complete | Setup, architecture, frontend routing, backend API |
-| 2 | ⏳ Next | Full frontend layout and navigation polish |
-| 3 | — | Camera integration |
-| 4 | — | OpenCV + MediaPipe hand tracking |
-| 5 | — | Dataset collection + classifier training |
-| 6 | — | Real-time recognition + stabilization |
-| 7 | — | TTS + STT |
-| 8 | — | Two-way communication |
-| 9 | — | Practice mode + emergency communication |
-| 10 | — | Database + analytics |
-| 11 | — | Testing, accessibility, deployment |
