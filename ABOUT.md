@@ -306,9 +306,3 @@ Natural next directions include widening the vocabulary toward the full ASL
 alphabet and common words, adding support for additional sign languages (such as
 ISL) once suitable training data is available, and incorporating facial and
 upper-body cues that carry grammatical meaning in sign language.
-
----
-
-## License
-
-See [LICENSE](LICENSE).
