@@ -157,3 +157,23 @@ class LstmStatusResponse(BaseModel):
     confidence_threshold: float
     active_sessions: int
     message: str
+
+
+# ── Phase 5: Dataset collection ─────────────────────────────────────────────
+
+class DatasetSampleResponse(BaseModel):
+    """Result of attempting to record one labeled landmark sample."""
+    status: Literal["recorded", "no_hand", "invalid_label", "error"]
+    label: str
+    message: str
+    total_for_label: int
+    total: int
+
+
+class DatasetStatsResponse(BaseModel):
+    """Per-label sample counts for the collected landmark dataset."""
+    total: int
+    counts: dict[str, int]
+    labels: list[str]
+    csv_path: str
+    ready_to_train: bool

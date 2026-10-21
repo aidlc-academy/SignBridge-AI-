@@ -1,0 +1,15 @@
+nbformat=4 cells=14
+ 0 [markdown] lines= 28 | SignBridge_Train_Gesture_Classifier.ipynb
+ 1 [code    ] lines=  6 | # CELL 1 ? Install pinned dependencies (RUN ONCE, THEN RESTART RUNTIME)
+ 2 [code    ] lines= 15 | # CELL 2 ? Imports and version check
+ 3 [code    ] lines= 19 | # CELL 3 ? Configuration
+ 4 [code    ] lines= 14 | # CELL 4 ? Shared normalization (IDENTICAL to backend app/ml/preprocessing.py)
+ 5 [code    ] lines= 12 | # CELL 5A ? (Path A) Upload a pre-built landmarks.csv
+ 6 [code    ] lines= 38 | # CELL 5B ? (Path B, optional) Download an ASL image dataset from Kaggle
+ 7 [code    ] lines= 43 | # CELL 5C ? (Path B) Extract + normalize landmarks -> landmarks.csv
+ 8 [code    ] lines= 41 | # CELL 6 ? Load dataset (stdlib csv; no pandas, matching the backend trainer)
+ 9 [code    ] lines=  9 | # CELL 7 ? Encode labels (ONLY on classes actually present)
+10 [code    ] lines= 29 | # CELL 8 ? Train + evaluate
+11 [code    ] lines= 32 | # CELL 9 ? Export backend-compatible artifacts
+12 [code    ] lines= 14 | # CELL 10 ? Verify artifacts reload exactly like the backend will
+13 [code    ] lines= 21 | # CELL 11 ? Zip and download

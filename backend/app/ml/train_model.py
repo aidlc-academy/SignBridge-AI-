@@ -8,8 +8,9 @@ Usage:
 
 The dataset CSV must have columns:
     label, x0, y0, z0, x1, y1, z1, ..., x20, y20, z20   (63 coordinate columns)
-    OR
-    label, <63 comma-separated floats as a single column 'features'>
+
+This is exactly the format produced by the dataset-collection endpoint
+(POST /api/dataset/sample -> datasets/landmarks.csv).
 
 Training produces:
     trained_models/gesture_classifier.joblib
@@ -41,21 +42,42 @@ def parse_args():
 
 
 def load_dataset(csv_path: Path):
-    """Load a CSV of labeled landmark features. Returns X (n, 63), y (n,)."""
-    import pandas as pd
+    """Load a CSV of labeled landmark features. Returns X (n, 63), y (n,).
 
-    df = pd.read_csv(csv_path)
-    if "label" not in df.columns:
-        raise ValueError("CSV must contain a 'label' column.")
+    Uses the standard-library csv reader (no pandas dependency) so the training
+    pipeline runs with only the declared backend requirements (numpy + sklearn).
+    The CSV must have a 'label' column followed by exactly 63 feature columns.
+    """
+    import csv as _csv
 
-    y = df["label"].values
+    with Path(csv_path).open("r", newline="", encoding="utf-8") as f:
+        reader = _csv.reader(f)
+        header = next(reader, None)
+        if header is None:
+            raise ValueError("CSV is empty.")
+        if "label" not in header:
+            raise ValueError("CSV must contain a 'label' column.")
 
-    feature_cols = [c for c in df.columns if c != "label"]
-    if len(feature_cols) != 63:
-        raise ValueError(
-            f"Expected 63 feature columns (21 landmarks × 3), found {len(feature_cols)}."
-        )
-    X = df[feature_cols].values.astype(np.float32)
+        label_idx = header.index("label")
+        feature_idx = [i for i in range(len(header)) if i != label_idx]
+        if len(feature_idx) != 63:
+            raise ValueError(
+                f"Expected 63 feature columns (21 landmarks × 3), found {len(feature_idx)}."
+            )
+
+        labels: list[str] = []
+        rows: list[list[float]] = []
+        for row in reader:
+            if not row:
+                continue
+            labels.append(row[label_idx])
+            rows.append([float(row[i]) for i in feature_idx])
+
+    if not rows:
+        raise ValueError("CSV contains a header but no data rows.")
+
+    X = np.asarray(rows, dtype=np.float32)
+    y = np.asarray(labels)
     return X, y
 
 

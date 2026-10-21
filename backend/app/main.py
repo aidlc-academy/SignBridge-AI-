@@ -17,6 +17,7 @@ from app.config import APP_TITLE, APP_DESCRIPTION, API_VERSION, CORS_ORIGINS
 from app.api.recognition   import router as recognition_router
 from app.api.conversations import router as conversations_router
 from app.api.analytics     import router as analytics_router
+from app.api.dataset       import router as dataset_router
 from app.services.lstm_service import shutdown_lstm_service
 from database.connection   import init_db
 
@@ -57,6 +58,7 @@ app.add_middleware(
 app.include_router(recognition_router)
 app.include_router(conversations_router)
 app.include_router(analytics_router)
+app.include_router(dataset_router)
 
 
 # ── Health ─────────────────────────────────────────────────────────────────
